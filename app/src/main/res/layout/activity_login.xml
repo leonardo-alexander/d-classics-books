@@ -1,11 +1,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <!-- Top Orange Background -->
     <View
         android:id="@+id/topBackground"
         android:layout_width="0dp"
@@ -13,9 +13,9 @@
         android:background="@drawable/bg_orange_curve"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-    <!-- Logo Circle -->
     <ImageView
         android:id="@+id/logo"
         android:layout_width="122dp"
@@ -25,9 +25,10 @@
         app:layout_constraintTop_toTopOf="@id/topBackground"
         app:layout_constraintBottom_toBottomOf="@id/topBackground"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-    <!-- Form Container -->
+    <!-- Form -->
     <LinearLayout
         android:id="@+id/formContainer"
         android:layout_width="0dp"
@@ -39,33 +40,80 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- Email -->
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            android:background="@drawable/bg_underline"
-            android:padding="12dp"
-            android:textColorHint="#888"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp">
+
+            <!-- Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="@color/text_header"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_family"
+                android:textFontWeight="600"
+                android:layout_marginBottom="4dp"
+                />
+
+            <!-- Input -->
+            <EditText
+                android:hint="johnwatson@example.com"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_underline"
+                android:paddingTop="8dp"
+                android:paddingBottom="6dp"
+                android:textColor="@color/text_header"
+                android:textColorHint="@color/text_placeholder"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_family"
+                android:textFontWeight="500"
+                />
+
+        </LinearLayout>
 
         <!-- Password -->
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_underline"
-            android:padding="12dp"
-            android:inputType="textPassword"
-            android:textColorHint="#888"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp">
 
-        <!-- Login Button -->
-        <Button
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textColor="@color/text_header"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_family"
+                android:textFontWeight="600"
+                android:layout_marginBottom="4dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="password"
+                android:background="@drawable/bg_underline"
+                android:paddingTop="8dp"
+                android:paddingBottom="6dp"
+                android:textColor="@color/text_header"
+                android:textColorHint="@color/text_placeholder"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_family"
+                android:textFontWeight="500"
+                android:inputType="textPassword"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogin"
             style="@style/AppButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:text="Login"
-            android:layout_marginTop="24dp"
-            android:textColor="@color/white"/>
+            android:background="@drawable/bg_button_primary"
+            android:backgroundTint="@null"/>
 
         <!-- Register Text -->
         <TextView

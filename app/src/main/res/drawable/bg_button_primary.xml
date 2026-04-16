@@ -1,19 +1,41 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Pressed -->
-    <item android:state_pressed="true">
-        <shape>
-            <solid android:color="@color/accent_light"/>
-            <corners android:radius="25dp"/>
-        </shape>
+    <item android:state_pressed="true" android:state_enabled="true">
+        <layer-list>
+            <item android:top="2dp">
+                <shape>
+                    <solid android:color="#20000000"/>
+                    <corners android:radius="25dp"/>
+                </shape>
+            </item>
+
+            <item>
+                <shape>
+                    <solid android:color="@color/accent_dark"/>
+                    <corners android:radius="25dp"/>
+                </shape>
+            </item>
+        </layer-list>
     </item>
 
-    <!-- Default -->
-    <item>
-        <shape>
-            <solid android:color="@color/accent_main"/>
-            <corners android:radius="25dp"/>
-        </shape>
+    <!-- Default (IMPORTANT: explicitly enabled) -->
+    <item android:state_enabled="true">
+        <layer-list>
+            <item android:top="4dp">
+                <shape>
+                    <solid android:color="#20000000"/>
+                    <corners android:radius="25dp"/>
+                </shape>
+            </item>
+
+            <item>
+                <shape>
+                    <solid android:color="@color/accent_main"/>
+                    <corners android:radius="25dp"/>
+                </shape>
+            </item>
+        </layer-list>
     </item>
 
 </selector>

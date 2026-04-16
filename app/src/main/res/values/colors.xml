@@ -11,7 +11,7 @@
 
     <!-- Accent -->
     <color name="accent_main">#FDA82C</color>
-    <color name="accent_light">#FFC269</color>
+    <color name="accent_dark">#C98624</color>
 
     <!-- White -->
     <color name="white">#FFFFFF</color>
