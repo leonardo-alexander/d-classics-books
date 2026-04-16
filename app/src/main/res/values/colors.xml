@@ -1,5 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#F2E5D0</color>
+    <color name="secondary">#E6D8C7</color>
+    <color name="background">#F9F3EE</color>
+
+    <!-- Text -->
+    <color name="text_header">#5E4E2F</color>
+    <color name="text_body">#8A7B5D</color>
+    <color name="text_caption">#A39582</color>
+    <color name="text_placeholder">#C5B9AA</color>
+
+    <!-- Accent -->
+    <color name="accent_main">#FDA82C</color>
+    <color name="accent_light">#FFC269</color>
+
+    <!-- White -->
+    <color name="white">#FFFFFF</color>
+
 </resources>
