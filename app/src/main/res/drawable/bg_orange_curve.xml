@@ -1,7 +1,17 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/accent_main"/>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="428dp"
+    android:height="455dp"
+    android:viewportWidth="428"
+    android:viewportHeight="455"
+    >
 
-    <corners
-        android:bottomLeftRadius="80dp"
-        android:bottomRightRadius="80dp"/>
-</shape>
+    <path
+        android:fillColor="@color/accent_main"
+        android:pathData="M214,355 H100 C44.77,355 0,399.77 0,455 V0 H214 Z"
+        />
+
+    <path
+        android:fillColor="@color/accent_main"
+        android:pathData="M213.757,0.074 H427.757 V255.074 C427.757,310.303 382.985,355.074 327.757,355.074 H213.757 Z"
+        />
+</vector>

@@ -11,18 +11,27 @@
         <item name="android:elevation">0dp</item>
     </style>
 
-<!--    <style name="Placeholder"-->
-<!--        <item name="layout_width">match_parent</item>-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/bg_underline"-->
-<!--        android:paddingTop="8dp"-->
-<!--        android:paddingBottom="6dp"-->
-<!--        android:textColor="@color/text_header"-->
-<!--        android:textColorHint="@color/text_placeholder"-->
-<!--        android:textSize="14sp"-->
-<!--        android:fontFamily="@font/poppins_family"-->
-<!--        android:textFontWeight="500"-->
-<!--    </style>-->
+    <style name="Label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_header</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/poppins_family</item>
+        <item name="android:textFontWeight">600</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="Placeholder">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_underline</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:textColor">@color/text_header</item>
+        <item name="android:textColorHint">@color/text_placeholder</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/poppins_family</item>
+        <item name="android:textFontWeight">500</item>
+    </style>
 
 </resources>

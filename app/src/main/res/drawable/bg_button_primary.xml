@@ -1,7 +1,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Pressed -->
-    <item android:state_pressed="true" android:state_enabled="true">
+    <item android:state_pressed="true">
         <layer-list>
             <item android:top="2dp">
                 <shape>
@@ -19,8 +19,8 @@
         </layer-list>
     </item>
 
-    <!-- Default (IMPORTANT: explicitly enabled) -->
-    <item android:state_enabled="true">
+    <!-- Default -->
+    <item>
         <layer-list>
             <item android:top="4dp">
                 <shape>
