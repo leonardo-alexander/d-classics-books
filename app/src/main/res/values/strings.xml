@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">DClassicsBooks</string>
+    <string name="app_name">DCBooks</string>
+    <string name="greet">Greetings, %1$s</string>
+    <string name="store_header">Check Out Nearby Stores</string>
 </resources>

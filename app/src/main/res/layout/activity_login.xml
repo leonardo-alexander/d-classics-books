@@ -7,15 +7,15 @@
     android:background="@color/background"
     >
 
-    <View
+    <ImageView
         android:id="@+id/topBackground"
         android:layout_width="0dp"
         android:layout_height="500dp"
-        android:background="@drawable/bg_orange_curve"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_orange_curve"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/logo"
@@ -23,7 +23,7 @@
         android:layout_height="122dp"
         android:background="@drawable/bg_circle_logo"
         android:src="@drawable/symbol_logo"
-        app:layout_constraintTop_toTopOf="@id/topBackground"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/topBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,13 +52,16 @@
             <!-- Label -->
             <TextView
                 android:text="Username"
-                style="@style/Label"
+                style="@style/Text.H3"
                 />
 
             <!-- Input -->
             <EditText
+                android:id="@+id/etUsername"
                 android:hint="watson"
                 style="@style/Placeholder"
+                android:imeOptions="actionNext"
+                android:inputType="text"
                 />
 
         </LinearLayout>
@@ -73,12 +76,15 @@
 
             <TextView
                 android:text="Password"
-                style="@style/Label"
+                style="@style/Text.H3"
                 />
 
             <EditText
+                android:id="@+id/etPassword"
                 android:hint="password"
                 style="@style/Placeholder"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
                 />
         </LinearLayout>
 
