@@ -5,11 +5,9 @@
     android:background="@color/background">
 
     <!-- Top Header -->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:background="@drawable/bg_top_card"
-        android:scaleType="centerCrop"/>
+    <include
+        android:id="@+id/headerView"
+        layout="@layout/view_header"/>
 
     <!-- Recycler -->
     <androidx.recyclerview.widget.RecyclerView
