@@ -99,4 +99,24 @@
         <item name="android:textFontWeight">400</item>
     </style>
 
+    <style name="DropdownItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="DropdownIcon">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:tint">@color/accent_main</item>
+    </style>
+
+    <style name="DropdownText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:textColor">@color/text_header</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>
