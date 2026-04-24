@@ -4,9 +4,14 @@
     android:viewportWidth="420"
     android:viewportHeight="178">
 
+    <!-- FULL BACKGROUND -->
+    <path
+        android:fillColor="@color/background"
+        android:pathData="M0,0 H420 V178 H0 Z"/>
+
+    <!-- CURVED TOP SHAPE -->
     <path
         android:fillColor="@color/primary"
-        android:background="@color/background"
         android:pathData="
             M420,173
             C420,145.386 393.614,123 366,123
