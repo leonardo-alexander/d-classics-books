@@ -31,9 +31,6 @@ public class StoresActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stores);
 
-        // ------------------------
-        // 🔥 IMPORTANT: setup dropdown filter
-        // ------------------------
         setupDropdown("Stores");
 
         // ------------------------
