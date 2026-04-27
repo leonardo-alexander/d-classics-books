@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    >
+    android:background="@color/background">
 
+    <!-- HEADER -->
     <include
         android:id="@+id/headerView"
         layout="@layout/view_header" />
 
+    <!-- DROPDOWN -->
     <include
         android:id="@+id/dropdownView"
         layout="@layout/view_dropdown"
@@ -17,19 +18,70 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- TAB WRAPPER -->
+    <LinearLayout
+        android:id="@+id/tabWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:padding="4dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_tab_container"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- NON-FICTION -->
+        <LinearLayout
+            android:id="@+id/tabNonFiction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:background="@drawable/bg_tab_active"
+            android:layout_marginEnd="6dp">
+
+            <TextView
+                android:text="Non-Fiction"
+                android:layout_marginStart="6dp"
+                style="@style/Text.H3"/>
+        </LinearLayout>
+
+        <!-- FICTION -->
+        <LinearLayout
+            android:id="@+id/tabFiction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:layout_marginEnd="6dp">
+
+            <TextView
+                android:text="Fiction"
+                style="@style/Text.H3"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- BOOK LIST -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bookRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="12dp"
-        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/tabWrapper"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="140dp"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
