@@ -116,23 +116,45 @@ public class BooksActivity extends AppCompatActivity {
         bookList.add(new Book(
                 "The Stranger",
                 "Albert Camus",
-                "A lonely dreamer in St. Petersburg meets a young woman and falls in love over a few nights. It’s a bittersweet story about hope, loneliness, and unfulfilled love.",
+                "Follows a detached man who commits a senseless crime and faces judgment. The novel explores absurdism, questioning meaning, emotion, and society’s expectations.",
                 "Fiction",
-                "6349606558",
-                88,
-                "3 Sep. 2025",
-                R.drawable.img_white_nights
+                "1916700334",
+                105,
+                "6 Jun. 2024",
+                R.drawable.img_the_stranger
         ));
 
         bookList.add(new Book(
-                "No Longer Human",
-                "Osamu Dazai",
-                "A deeply personal story of a man who feels disconnected from society. It explores alienation, depression, and the struggle to understand what it means to be human.",
+                "The Idiot",
+                "Fyodor Dostoevsky",
+                "A kind and innocent man returns to society and is misunderstood by those around him. The story contrasts pure goodness with a flawed and cynical world.",
                 "Fiction",
-                "0811204812",
-                272,
-                "1 Feb. 1973",
-                R.drawable.img_no_longer_human
+                "9781853261756",
+                592,
+                "5 Dec. 1996",
+                R.drawable.img_the_idiot
+        ));
+
+        bookList.add(new Book(
+                "The Metamorphosis",
+                "Franz Kafka",
+                "A man wakes up transformed into a giant insect, and his life quickly falls apart. It reflects themes of isolation, identity, and how society treats those who are different.   ",
+                "Fiction",
+                "6230977735",
+                81,
+                "30 Jul. 2024",
+                R.drawable.img_the_metamorphosis
+        ));
+
+        bookList.add(new Book(
+                "Anna Karenina",
+                "Leo Tolstoy",
+                "A tragic love story about a married woman who pursues a passionate affair. It explores love, betrayal, family, and the consequences of following one’s desires.",
+                "Fiction",
+                "0140449175",
+                864,
+                "30 Jan. 2003",
+                R.drawable.img_the_idiot
         ));
 
         adapter = new BookAdapter(bookList, book -> {
