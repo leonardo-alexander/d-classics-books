@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/topBackground"
         android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:layout_height="450dp"
         android:scaleType="fitXY"
         android:src="@drawable/bg_orange_curve"
         app:layout_constraintEnd_toEndOf="parent"

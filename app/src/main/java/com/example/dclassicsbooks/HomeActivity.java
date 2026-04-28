@@ -1,6 +1,7 @@
 package com.example.dclassicsbooks;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,13 +30,24 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // ------------------------
-        // GREETING
-        // ------------------------
         TextView greeting = findViewById(R.id.tvGreeting);
 
-        String username = getIntent().getStringExtra("username");
-        username = (username == null) ? "Tester" : username;
+        // GET username from SharedPreferences (persistent)
+        SharedPreferences prefs = getSharedPreferences("app", MODE_PRIVATE);
+        String username = prefs.getString("username", null);
+
+        // fallback (first time from intent)
+        if (username == null) {
+            username = getIntent().getStringExtra("username");
+
+            if (username != null) {
+                // save it so it persists
+                prefs.edit().putString("username", username).apply();
+            }
+        }
+
+        // final fallback
+        if (username == null) username = "Tester";
 
         greeting.setText(getString(R.string.greet, username.toUpperCase()));
 

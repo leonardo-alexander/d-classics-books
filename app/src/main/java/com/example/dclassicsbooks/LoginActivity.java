@@ -42,8 +42,13 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
+            getSharedPreferences("app", MODE_PRIVATE)
+                    .edit()
+                    .putString("username", user)
+                    .apply();
+
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            intent.putExtra("username", user);
+            intent.putExtra("username", user); // optional now
             startActivity(intent);
             finish();
         });

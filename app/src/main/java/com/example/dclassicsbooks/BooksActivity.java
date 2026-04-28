@@ -1,6 +1,7 @@
 package com.example.dclassicsbooks;
 
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -230,9 +231,47 @@ public class BooksActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        // ------------------------
+        // GRID (CENTERED)
+        // ------------------------
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                int size = filteredList.size();
+
+                // center last item if odd
+                if (size % 2 == 1 && position == size - 1) {
+                    return 2;
+                }
+                return 1;
+            }
+        });
+
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        // ------------------------
+        // SPACING
+        // ------------------------
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view,
+                                       RecyclerView parent,
+                                       RecyclerView.State state) {
+
+                int space = 24;
+
+                outRect.left = space / 2;
+                outRect.right = space / 2;
+                outRect.top = space;
+            }
+        });
+
+        // ------------------------
+        // DEFAULT FILTER
+        // ------------------------
         filterBooks("Non-Fiction");
 
         LinearLayout tabNonFiction = findViewById(R.id.tabNonFiction);
@@ -240,6 +279,7 @@ public class BooksActivity extends AppCompatActivity {
 
         tabNonFiction.setOnClickListener(v -> {
             filterBooks("Non-Fiction");
+            adapter.notifyDataSetChanged();
 
             tabNonFiction.setBackgroundResource(R.drawable.bg_tab_active);
             tabFiction.setBackground(null);
@@ -247,6 +287,7 @@ public class BooksActivity extends AppCompatActivity {
 
         tabFiction.setOnClickListener(v -> {
             filterBooks("Fiction");
+            adapter.notifyDataSetChanged();
 
             tabNonFiction.setBackground(null);
             tabFiction.setBackgroundResource(R.drawable.bg_tab_active);
