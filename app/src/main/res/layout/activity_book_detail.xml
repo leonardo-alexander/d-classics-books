@@ -107,7 +107,7 @@
                             style="@style/Text.H3"/>
 
                         <EditText
-                            android:id="@+id/etUsername"
+                            android:id="@+id/etAddress"
                             android:hint="221B Baker Street"
                             style="@style/Placeholder"
                             android:inputType="text"
@@ -119,7 +119,7 @@
                             style="@style/Text.H3"/>
 
                         <EditText
-                            android:id="@+id/etPassword"
+                            android:id="@+id/etPhone"
                             android:hint="0123456789"
                             style="@style/Placeholder"
                             android:inputType="phone"
@@ -127,7 +127,7 @@
 
                         <!-- BUTTON -->
                         <Button
-                            android:id="@+id/btnLogin"
+                            android:id="@+id/btnBuy"
                             style="@style/AppButton"
                             android:text="Buy Now"/>
 

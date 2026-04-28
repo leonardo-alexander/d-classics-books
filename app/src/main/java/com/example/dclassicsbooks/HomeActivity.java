@@ -2,6 +2,7 @@ package com.example.dclassicsbooks;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -99,6 +102,8 @@ public class HomeActivity extends AppCompatActivity
         // CAROUSEL (STORES)
         // ========================
         RecyclerView carousel = findViewById(R.id.carouselRecycler);
+        ImageView btnNext = findViewById(R.id.btnNext);
+        ImageView btnPrev = findViewById(R.id.btnPrev);
 
         List<Store> stores = new ArrayList<>();
 
@@ -129,6 +134,40 @@ public class HomeActivity extends AppCompatActivity
 
         new PagerSnapHelper().attachToRecyclerView(carousel);
         carousel.setNestedScrollingEnabled(false);
+
+        LinearLayoutManager layoutManager =
+                (LinearLayoutManager) carousel.getLayoutManager();
+
+        final int[] currentPosition = {0};
+
+        // NEXT
+        btnNext.setOnClickListener(v -> {
+            if (currentPosition[0] < stores.size() - 1) {
+                currentPosition[0]++;
+                carousel.smoothScrollToPosition(currentPosition[0]);
+            }
+        });
+
+        // PREV
+        btnPrev.setOnClickListener(v -> {
+            if (currentPosition[0] > 0) {
+                currentPosition[0]--;
+                carousel.smoothScrollToPosition(currentPosition[0]);
+            }
+        });
+
+        carousel.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    int pos = layoutManager.findFirstCompletelyVisibleItemPosition();
+                    if (pos == -1) {
+                        pos = layoutManager.findFirstVisibleItemPosition();
+                    }
+                    currentPosition[0] = pos;
+                }
+            }
+        });
 
         // ========================
         // RECOMMENDED BOOKS
@@ -181,13 +220,27 @@ public class HomeActivity extends AppCompatActivity
                 R.drawable.img_no_longer_human
         ));
 
-        recommended.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        );
+        recommended.setLayoutManager(new GridLayoutManager(this, 2));
 
         recommended.setAdapter(new BookAdapter(bookList, this));
 
         recommended.setNestedScrollingEnabled(false);
+
+        int spacing = 16;
+
+        recommended.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view,
+                                       RecyclerView parent, RecyclerView.State state) {
+
+                int position = parent.getChildAdapterPosition(view);
+                int column = position % 2;
+
+                outRect.left = column == 0 ? spacing : spacing / 2;
+                outRect.right = column == 1 ? spacing : spacing / 2;
+                outRect.top = spacing;
+            }
+        });
     }
 
     // ========================
@@ -195,7 +248,17 @@ public class HomeActivity extends AppCompatActivity
     // ========================
     @Override
     public void onClick(Book book) {
-        Intent intent = new Intent(this, BooksActivity.class);
+        Intent intent = new Intent(this, BookDetailActivity.class);
+
+        intent.putExtra("title", book.getTitle());
+        intent.putExtra("author", book.getAuthor());
+        intent.putExtra("desc", book.getDescription());
+        intent.putExtra("category", book.getGenre());
+        intent.putExtra("isbn", book.getIsbn());
+        intent.putExtra("pages", book.getPages());
+        intent.putExtra("date", book.getReleaseDate());
+        intent.putExtra("image", book.getImageRes());
+
         startActivity(intent);
     }
 

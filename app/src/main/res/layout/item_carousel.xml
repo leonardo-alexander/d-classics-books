@@ -35,14 +35,16 @@
                 android:text="Store Name"
                 style="@style/Text.H3"
                 android:textColor="@color/primary"
-                />
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
             <TextView
                 android:id="@+id/address"
                 android:text="Address"
                 style="@style/Text.Caption"
                 android:textColor="@color/text_caption"
-                />
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
         </LinearLayout>
 

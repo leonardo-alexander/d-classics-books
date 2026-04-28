@@ -34,7 +34,8 @@
 
         <activity
             android:name=".BookDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
 
         <activity
             android:name=".StoresActivity"

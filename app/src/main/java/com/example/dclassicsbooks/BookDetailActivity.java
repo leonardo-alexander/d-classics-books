@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 public class BookDetailActivity extends AppCompatActivity {
 
     ImageView imgBook;
@@ -32,10 +34,10 @@ public class BookDetailActivity extends AppCompatActivity {
         ImageView btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
 
-        // === Form UI ===
-        etAddress = findViewById(R.id.etUsername);
-        etPhone = findViewById(R.id.etPassword);
-        btnBuy = findViewById(R.id.btnLogin);
+        // === Form UI (rename these IDs in XML if possible) ===
+        etAddress = findViewById(R.id.etAddress);
+        etPhone = findViewById(R.id.etPhone);
+        btnBuy = findViewById(R.id.btnBuy);
 
         // === Get Data ===
         Intent intent = getIntent();
@@ -49,19 +51,19 @@ public class BookDetailActivity extends AppCompatActivity {
         String date = intent.getStringExtra("date");
         int image = intent.getIntExtra("image", 0);
 
-        // === Set Data ===
-        imgBook.setImageResource(image);
-        txtTitle.setText(title);
-        txtAuthor.setText(author);
+        // === Set Data safely ===
+        if (image != 0) imgBook.setImageResource(image);
+        if (title != null) txtTitle.setText(title);
+        if (author != null) txtAuthor.setText(author);
 
         txtInfo.setText(
-                genre + "\n" +
-                        "ISBN " + isbn + "\n" +
+                (genre != null ? genre : "") + "\n" +
+                        "ISBN " + (isbn != null ? isbn : "-") + "\n" +
                         pages + " pages\n" +
-                        date
+                        (date != null ? date : "")
         );
 
-        txtDesc.setText(desc);
+        if (desc != null) txtDesc.setText(desc);
 
         // === Button Click ===
         btnBuy.setOnClickListener(v -> {
@@ -69,34 +71,43 @@ public class BookDetailActivity extends AppCompatActivity {
             String address = etAddress.getText().toString().trim();
             String phone = etPhone.getText().toString().trim();
 
-            // reset errors first
-            etAddress.setError(null);
-            etPhone.setError(null);
-
             // 1. Empty validation
-            if (address.isEmpty()) {
-                etAddress.setError("Address required");
-                etAddress.requestFocus();
+            if (address.isEmpty() || phone.isEmpty()) {
+
+                new MaterialAlertDialogBuilder(BookDetailActivity.this)
+                        .setTitle("Error")
+                        .setMessage("Address and phone number must be filled.")
+                        .setPositiveButton("OK", null)
+                        .show();
+
                 return;
             }
 
-            if (phone.isEmpty()) {
-                etPhone.setError("Phone number required");
-                etPhone.requestFocus();
-                return;
-            }
-
-            // 2. Numeric phone validation
+            // 2. Numeric validation
             if (!phone.matches("\\d+")) {
-                etPhone.setError("Phone must be numeric");
-                etPhone.requestFocus();
+
+                new MaterialAlertDialogBuilder(BookDetailActivity.this)
+                        .setTitle("Error")
+                        .setMessage("Phone number must be numeric.")
+                        .setPositiveButton("OK", null)
+                        .show();
+
                 return;
             }
 
-            // 3. Success → go to Home
-            Intent successIntent = new Intent(BookDetailActivity.this, HomeActivity.class);
-            startActivity(successIntent);
-            finish();
+            // 3. Success → show dialog → redirect
+            new MaterialAlertDialogBuilder(BookDetailActivity.this)
+                    .setTitle("Purchase Successful")
+                    .setMessage("A confirmation email has been sent to your email.")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", (dialog, which) -> {
+
+                        Intent goToBooks = new Intent(BookDetailActivity.this, BooksActivity.class);
+                        startActivity(goToBooks);
+                        finish();
+
+                    })
+                    .show();
         });
     }
 }
