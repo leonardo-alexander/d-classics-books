@@ -17,7 +17,8 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity
+        implements BookAdapter.OnBookClickListener {
 
     LinearLayout dropdown;
     ImageView arrow;
@@ -56,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
 
         selected.setOnClickListener(v -> toggleDropdown());
 
-        // ensure dropdown appears above everything
+        // layering
         View headerContainer = (View) findViewById(R.id.headerView).getParent();
         headerContainer.bringToFront();
         headerContainer.setElevation(30f);
@@ -82,9 +83,9 @@ public class HomeActivity extends AppCompatActivity {
             finish();
         });
 
-        // ------------------------
-        // CAROUSEL
-        // ------------------------
+        // ========================
+        // CAROUSEL (STORES)
+        // ========================
         RecyclerView carousel = findViewById(R.id.carouselRecycler);
 
         List<Store> stores = new ArrayList<>();
@@ -109,21 +110,87 @@ public class HomeActivity extends AppCompatActivity {
                 "18 Greek St, Soho",
                 "2.0 km", R.drawable.img_store5));
 
-        // carousel setup
         carousel.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         );
         carousel.setAdapter(new CarouselAdapter(stores));
 
-        // snap effect (important)
         new PagerSnapHelper().attachToRecyclerView(carousel);
+        carousel.setNestedScrollingEnabled(false);
+
+        // ========================
+        // RECOMMENDED BOOKS
+        // ========================
+        RecyclerView recommended = findViewById(R.id.recommendedRecycler);
+
+        List<Book> bookList = new ArrayList<>();
+
+        bookList.add(new Book(
+                "Anna Karenina",
+                "Leo Tolstoy",
+                "A tragic love story about a married woman...",
+                "Fiction",
+                "0140449175",
+                864,
+                "30 Jan. 2003",
+                R.drawable.img_anna_karenina
+        ));
+
+        bookList.add(new Book(
+                "The Stranger",
+                "Albert Camus",
+                "Follows a detached man who commits a senseless crime...",
+                "Fiction",
+                "1916700334",
+                105,
+                "6 Jun. 2024",
+                R.drawable.img_the_stranger
+        ));
+
+        bookList.add(new Book(
+                "Letters To Milena",
+                "Franz Kafka",
+                "A collection of deeply emotional letters...",
+                "Non-Fiction",
+                "1784874000",
+                272,
+                "6 Dec. 2018",
+                R.drawable.img_letters_to_milena
+        ));
+
+        bookList.add(new Book(
+                "No Longer Human",
+                "Osamu Dazai",
+                "A deeply personal story of a man...",
+                "Fiction",
+                "0811204812",
+                272,
+                "1 Feb. 1973",
+                R.drawable.img_no_longer_human
+        ));
+
+        recommended.setLayoutManager(
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        );
+
+        recommended.setAdapter(new BookAdapter(bookList, this));
+
+        recommended.setNestedScrollingEnabled(false);
+    }
+
+    // ========================
+    // BOOK CLICK HANDLER
+    // ========================
+    @Override
+    public void onClick(Book book) {
+        Intent intent = new Intent(this, BooksActivity.class);
+        startActivity(intent);
     }
 
     // ------------------------
-    // SETUP DROPDOWN
+    // DROPDOWN LOGIC
     // ------------------------
     private void setupDropdown(String current) {
-
         View itemHome = findViewById(R.id.itemHome);
         View itemBooks = findViewById(R.id.itemBooks);
         View itemStores = findViewById(R.id.itemStores);
@@ -132,60 +199,35 @@ public class HomeActivity extends AppCompatActivity {
         itemBooks.setVisibility(View.VISIBLE);
         itemStores.setVisibility(View.VISIBLE);
 
-        switch (current) {
-            case "Home":
-                itemHome.setVisibility(View.GONE);
-                break;
-            case "Books":
-                itemBooks.setVisibility(View.GONE);
-                break;
-            case "Stores":
-                itemStores.setVisibility(View.GONE);
-                break;
-        }
+        if (current.equals("Home")) itemHome.setVisibility(View.GONE);
+        if (current.equals("Books")) itemBooks.setVisibility(View.GONE);
+        if (current.equals("Stores")) itemStores.setVisibility(View.GONE);
     }
 
-    // ------------------------
-    // DROPDOWN ANIMATION
-    // ------------------------
     private void toggleDropdown() {
         if (dropdown.getVisibility() == View.GONE) {
-
             dropdown.setAlpha(0f);
             dropdown.setTranslationY(-20f);
             dropdown.setVisibility(View.VISIBLE);
 
-            dropdown.animate()
-                    .alpha(1f)
-                    .translationY(0f)
-                    .setDuration(200)
-                    .setInterpolator(new DecelerateInterpolator())
-                    .start();
+            dropdown.animate().alpha(1f).translationY(0f).setDuration(200)
+                    .setInterpolator(new DecelerateInterpolator()).start();
 
             arrow.animate().rotation(180f).setDuration(200);
-
         } else {
             closeDropdown();
         }
     }
 
     private void closeDropdown() {
-        dropdown.animate()
-                .alpha(0f)
-                .translationY(-20f)
-                .setDuration(150)
-                .withEndAction(() -> dropdown.setVisibility(View.GONE))
-                .start();
+        dropdown.animate().alpha(0f).translationY(-20f).setDuration(150)
+                .withEndAction(() -> dropdown.setVisibility(View.GONE)).start();
 
         arrow.animate().rotation(0f).setDuration(150);
     }
 
-    // ------------------------
-    // OUTSIDE CLICK CLOSE
-    // ------------------------
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-
         if (event.getAction() == MotionEvent.ACTION_DOWN &&
                 dropdown.getVisibility() == View.VISIBLE) {
 
