@@ -53,14 +53,14 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         Store store = storeList.get(position);
 
-        holder.name.setText(store.name);
-        holder.address.setText(store.address);
-        holder.distance.setText(store.distance);
+        holder.name.setText(store.getName());
+        holder.address.setText(store.getAddress());
+        holder.distance.setText(store.getDistance());
 
-        holder.imgStore.setImageResource(store.imageResId);
+        holder.imgStore.setImageResource(store.getImage());
 
         holder.btnMap.setOnClickListener(v -> {
-            String uri = "geo:0,0?q=" + store.address;
+            String uri = "geo:0,0?q=" + store.getAddress();
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
             intent.setPackage("com.google.android.apps.maps");
             context.startActivity(intent);

@@ -111,7 +111,7 @@ public class StoresActivity extends AppCompatActivity {
     }
 
     // ------------------------
-    // 🔥 HIDE CURRENT MENU
+    // HIDE CURRENT MENU
     // ------------------------
     private void setupDropdown(String current) {
 

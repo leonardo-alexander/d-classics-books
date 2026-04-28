@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+
+    <!-- Background -->
+    <ImageView
+        android:id="@+id/headerBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_top_card_transparent"
+        android:scaleType="fitXY"/>
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/headerLogo"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/img_text_logo" />
+</FrameLayout>
